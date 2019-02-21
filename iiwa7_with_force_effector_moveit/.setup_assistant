@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: iiwa7_with_force_effector_description
+    relative_path: urdf/iiwa7_with_force_effector.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/iiwa7_with_force_effector.srdf
+  CONFIG:
+    author_name: chenhaowen
+    author_email: chenhaowen01@qq.com
+    generated_timestamp: 1550714071
