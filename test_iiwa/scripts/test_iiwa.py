@@ -16,6 +16,7 @@ def main():
 
     group.set_max_velocity_scaling_factor(0.005)
 
+    # home, ready are predefined pose, defined when create moveit package
     group.set_named_target('home')
     group.go()
     group.stop()
@@ -40,8 +41,11 @@ def main():
     joint_state.position = group.get_current_joint_values()
     ready_state.joint_state = joint_state
 
+    # compute a path consised of straight line segments from a series of waypoints
     (plan, fraction) = group.compute_cartesian_path([ready_target_pose, ready_pose], 0.005, 0)
     print('path fraction: {}'.format(fraction))
+
+    # arg ref_state_in is the start state of robot
     new_plan = group.retime_trajectory(ready_state, plan, 0.005)
     group.execute(new_plan)
     group.stop()
