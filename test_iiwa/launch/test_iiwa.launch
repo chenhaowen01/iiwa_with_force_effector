@@ -1,0 +1,14 @@
+<launch>
+    <!-- The is gonna have its nodes/topics under a namespace with the same name. -->
+    <arg name="robot_name" default="iiwa"/>
+    <arg name="plot_topics" default="/state/CartesianPose/pose/position"/>
+
+    <group ns="$(arg robot_name)">
+        <!--
+        <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot" respawn="false"
+            args="$(arg plot_topics)" output="screen">
+        </node>
+         -->
+         <node name="test_iiwa" pkg="test_iiwa" type="test_iiwa.py" output="screen"/>
+    </group>
+</launch>
