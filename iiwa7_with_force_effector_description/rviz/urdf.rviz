@@ -6,7 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-      Splitter Ratio: 0.5
+      Splitter Ratio: 0.5441176295280457
     Tree Height: 549
   - Class: rviz/Selection
     Name: Selection
@@ -50,8 +50,8 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Attached Body Color: 150; 50; 150
-      Class: moveit_rviz_plugin/RobotState
+    - Alpha: 1
+      Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
       Links:
@@ -111,18 +111,16 @@ Visualization Manager:
           Value: true
         tool_link_ee:
           Alpha: 1
-          Show Axes: false
+          Show Axes: true
           Show Trail: false
         world:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-      Name: RobotState
-      Robot Alpha: 1
+      Name: RobotModel
       Robot Description: robot_description
-      Robot State Topic: display_robot_state
-      Show All Links: true
-      Show Highlights: true
+      TF Prefix: ""
+      Update Interval: 0
       Value: true
       Visual Enabled: true
   Enabled: true
@@ -150,7 +148,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.644041061401367
+      Distance: 2.590181589126587
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -165,10 +163,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.7853978872299194
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.650399923324585
     Saved: ~
 Window Geometry:
   Displays:
@@ -187,4 +185,4 @@ Window Geometry:
     collapsed: false
   Width: 1200
   X: 67
-  Y: 30
+  Y: 27
