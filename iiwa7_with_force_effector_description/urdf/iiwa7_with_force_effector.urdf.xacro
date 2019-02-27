@@ -42,9 +42,9 @@
   Else, one can define it using a geometric representation that approximate it, like a cylinder (see commented lines) -->
   <link name="tool_link">
     <inertial>
-      <origin xyz="0 0 0.02" rpy="0 0 0"/>
-      <mass value="3.129"/>
-      <inertia ixx="0.01464"  ixy="0.0005912"  ixz="0" iyy="0.01465" iyz="0" izz="0.002872" />
+      <origin xyz="-0.013278 0.000179 -0.018697" rpy="0 0 0"/>
+      <mass value="2.598"/>
+      <inertia ixx="0.015773"  ixy="0.000040"  ixz="-0.000191" iyy="0.016365" iyz="0.000012" izz="0.004015" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
