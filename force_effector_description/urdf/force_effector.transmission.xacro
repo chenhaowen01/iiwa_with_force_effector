@@ -4,21 +4,23 @@
         <transmission name="${robot_name}_tran1">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${robot_name}_joint_1">
-                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <!-- <hardwareInterface>EffortJointInterface</hardwareInterface> -->
+                <hardwareInterface>transmission_interface/PositionJointInterface</hardwareInterface>
             </joint>
             <actuator name="${robot_name}_motor1">
                 <mechanicalReduction>1</mechanicalReduction>
-                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <!-- <hardwareInterface>EffortJointInterface</hardwareInterface> -->
+                <hardwareInterface>transmission_interface/PositionJointInterface</hardwareInterface>
             </actuator>
         </transmission>
         <transmission name="${robot_name}_tran2">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${robot_name}_joint_2">
-                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                <hardwareInterface>transmission_interface/VelocityJointInterface</hardwareInterface>
             </joint>
             <actuator name="${robot_name}_motor2">
                 <mechanicalReduction>1</mechanicalReduction>
-                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                <hardwareInterface>transmission_interface/VelocityJointInterface</hardwareInterface>
             </actuator>
         </transmission>
     </xacro:macro>
