@@ -1,0 +1,7 @@
+<library path="lib/libforce_effector_controllers">
+  <class name="force_effector_controllers/ForceEffectorForceController" type="force_effector_controllers::ForceEffectorForceController" base_class_type="controller_interface::ControllerBase">
+  <description>
+    This is a force controller plugin
+  </description>
+  </class>
+</library>
