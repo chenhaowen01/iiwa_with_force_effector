@@ -5,10 +5,12 @@
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${robot_name}_joint_1">
                 <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <hardwareInterface>PositionJointInterface</hardwareInterface>
             </joint>
             <actuator name="${robot_name}_motor1">
                 <mechanicalReduction>1</mechanicalReduction>
                 <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <!-- <hardwareInterface>PositionJointInterface</hardwareInterface> -->
             </actuator>
         </transmission>
         <transmission name="${robot_name}_tran2">

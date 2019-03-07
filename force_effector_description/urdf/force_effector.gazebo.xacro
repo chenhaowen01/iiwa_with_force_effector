@@ -6,6 +6,7 @@
         <gazebo>
             <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
                 <!-- <robotNamespace>/${robot_name}</robotNamespace> -->
+                <robotSimType>gazebo_ros_control/FtRobotHWSim</robotSimType>
             </plugin>
         </gazebo>
         <gazebo reference="${robot_name}_link_0">
@@ -30,8 +31,9 @@
         </gazebo>
         <gazebo>
             <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-                <updateRate>100.0</updateRate>
+                <updateRate>1000.0</updateRate>
                 <topicName>ft_sensor_topic</topicName>
+                <gaussianNoise>0.05</gaussianNoise>
                 <jointName>${robot_name}_joint_1</jointName>
             </plugin>
         </gazebo>
