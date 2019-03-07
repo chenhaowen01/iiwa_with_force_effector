@@ -3,11 +3,18 @@ joint_state_controller:
   publish_rate: 50
 
 force_effector_joint_1_controller:
-  # type: effort_controllers/JointEffortController
-  type: effort_controllers/JointPositionController
+  type: effort_controllers/JointEffortController
+  # type: effort_controllers/JointPositionController
+  # type: position_controllers/JointPositionController
   joint: force_effector_joint_1
   pid: {p: 3000, i: 6000, d: 600, i_clamp_min: -10000, i_clamp_max: 10000}
 
 force_effector_joint_2_controller:
   type: velocity_controllers/JointVelocityController
   joint: force_effector_joint_2
+
+force_controller:
+  type: force_effector_controllers/ForceEffectorForceController
+  joint: force_effector_joint_1
+  ft_sensor: ft_sensor
+  pid: {p: 0.01, i: 100, d: 0.00001, i_clamp_min: -1000, i_clamp_max: 1000}

@@ -12,7 +12,7 @@
         
         <include file="$(find force_effector_control)/launch/force_effector_control.launch">
             <arg name="controllers" value="joint_state_controller 
-                 force_effector_joint_1_controller 
+                 force_controller
                  force_effector_joint_2_controller"/>
             <arg name="robot_name" value="$(arg robot_name)" />
         </include>
