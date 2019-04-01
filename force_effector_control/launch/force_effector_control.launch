@@ -3,7 +3,7 @@
     
     <!-- Everythings is spawned under a namespace with the same name as the robot's. -->
 
-    <arg name="controllers" default="joint_state_controller force_effector_joint_1_controller force_effector_joint_2_controller"/>
+    <arg name="controllers" default="joint_state_controller force_effector_joint_1_controller"/>
     <arg name="robot_name" default="force_effector" />
     
     <!-- Loads joint controller configurations from YAML file to parameter server -->

@@ -11,6 +11,8 @@ void ForceEffectorHW::start()
     ros::NodeHandle n;
     subscriber_ = n.subscribe(ft_sensor_name_, 1, &ForceEffectorHW::ft_sensor_subscriber_callback, this);
 
+    torque_publisher_ = n.advertise<std_msgs::Int64>("motor_torque_cmd", 1);
+
     nh_.param("joint_1_name", joint_1_name_, std::string("force_effector_joint_1"));
     nh_.param("ft_sensor_name", ft_sensor_name_, std::string("ft_sensor"));
     nh_.param("ft_sensor_frame_id", ft_sensor_frame_id_, std::string("ft_sensor_link"));
@@ -36,6 +38,9 @@ void ForceEffectorHW::read(const ros::Time &time, const ros::Duration &period)
 
 void ForceEffectorHW::write(const ros::Time &time, const ros::Duration &period)
 {
+    std_msgs::Int64 torque_cmd_msg;
+    torque_cmd_msg.data = joint_1_effort_command_;
+    torque_publisher_.publish(torque_cmd_msg);
 }
 
 void ForceEffectorHW::ft_sensor_subscriber_callback(const geometry_msgs::WrenchStampedConstPtr &ft)

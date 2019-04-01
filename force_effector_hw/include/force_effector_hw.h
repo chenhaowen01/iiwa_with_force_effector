@@ -3,6 +3,7 @@
 #include <hardware_interface/joint_state_interface.h>
 #include <hardware_interface/joint_command_interface.h>
 #include <geometry_msgs/WrenchStamped.h>
+#include <std_msgs/Int64.h>
 
 class ForceEffectorHW : public hardware_interface::RobotHW
 {
@@ -34,4 +35,6 @@ private:
 
     ros::Subscriber subscriber_;
     void ft_sensor_subscriber_callback(const geometry_msgs::WrenchStampedConstPtr &ft);
+
+    ros::Publisher torque_publisher_;
 };
