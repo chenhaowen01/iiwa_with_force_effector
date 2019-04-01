@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 
     ros::NodeHandle force_effector_nh;
     ForceEffectorHW force_effector_hw(force_effector_nh);
+    force_effector_hw.start();
 
     ros::Time last(ros::Time::now());
     ros::Time now;

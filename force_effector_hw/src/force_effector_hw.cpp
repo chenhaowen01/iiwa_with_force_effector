@@ -15,6 +15,8 @@ void ForceEffectorHW::start()
     nh_.param("ft_sensor_name", ft_sensor_name_, std::string("ft_sensor"));
     nh_.param("ft_sensor_frame_id", ft_sensor_frame_id_, std::string("ft_sensor_link"));
 
+    std::cout << "ft: " << ft_sensor_name_;
+
     hardware_interface::JointStateHandle state_handle(joint_1_name_, &joint_1_position_, &joint_1_velocity_, &joint_1_effort_);
     state_interface_.registerHandle(state_handle);
     this->registerInterface(&state_interface_);
@@ -44,4 +46,5 @@ void ForceEffectorHW::ft_sensor_subscriber_callback(const geometry_msgs::WrenchS
     torque_[0] = ft->wrench.torque.x;
     torque_[1] = ft->wrench.torque.y;
     torque_[2] = ft->wrench.torque.z;
+    ROS_INFO("fz: %lf", ft->wrench.force.z);
 }
