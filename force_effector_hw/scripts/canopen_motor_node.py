@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 import rospy
-from std_msgs.msg import Float64
+from std_msgs.msg import Int64
 from MMRCS1 import MMRCS1
 
 g_motor = None
@@ -46,9 +46,9 @@ def main():
     g_motor.sent_torque(0)
     rospy.loginfo('canopen motor inited!')
 
-    rospy.Subscriber('motor_position_cmd', Float64, position_cmd_callback)
-    rospy.Subscriber('motor_velocity_cmd', Float64, velocity_cmd_callback)
-    rospy.Subscriber('motor_torque_cmd', Float64, torque_cmd_callback)
+    rospy.Subscriber('motor_position_cmd', Int64, position_cmd_callback)
+    rospy.Subscriber('motor_velocity_cmd', Int64, velocity_cmd_callback)
+    rospy.Subscriber('motor_torque_cmd', Int64, torque_cmd_callback)
 
     rospy.spin()
 
