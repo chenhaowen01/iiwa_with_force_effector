@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys
+import sys, os
 import rospy
 from std_msgs.msg import Int64
 from MMRCS1 import MMRCS1
@@ -35,8 +35,8 @@ def main():
 
     rospy.init_node('canopen_motor_node')
     rospy.loginfo('starting canopen motor node...')
-
-    eds_file = rospy.get_param('eds_file', './copley.eds')
+    script_dir, _ = os.path.split(os.path.realpath(__file__))
+    eds_file = rospy.get_param('eds_file', os.path.join(script_dir, 'copley.eds'))
     motor_id = rospy.get_param('motor_id', 1)
     motor_mode = rospy.get_param('motor_mode', 4)
 
