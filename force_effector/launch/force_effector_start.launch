@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <arg name="robot_name" default="force_effector" />
+    <arg name="sim" default="true" doc="If true, the robot will be simulated in Gazebo" />
+    
+    <!-- Loads the Gazebo world. -->
+    <group if="$(arg sim)">
+        <include file="$(find force_effector)/launch/force_effector_world.launch" if="$(arg sim)"/>
+        <include file="$(find force_effector_control)/launch/force_effector_control.launch">
+            <arg name="controllers" value="joint_state_controller 
+                force_controller
+                force_effector_joint_2_controller"/>
+            <arg name="robot_name" value="$(arg robot_name)" />
+        </include>
+    </group>
+
+    <!-- Run real robot -->
+    <group unless="$(arg sim)">
+        <include file="$(find force_effector_hw)/launch/force_effector_hw.launch" />
+        
+        <!-- Load universal robot description format (URDF) -->
+        <param name="robot_description" command="xacro '$(find force_effector_description)/urdf/force_effector.urdf.xacro'"/>
+
+        <include file="$(find force_effector_control)/launch/force_effector_control.launch">
+            <arg name="controllers" value="joint_state_controller 
+                force_controller"/>
+            <arg name="robot_name" value="$(arg robot_name)" />
+        </include>
+    </group>
+    
+</launch>
