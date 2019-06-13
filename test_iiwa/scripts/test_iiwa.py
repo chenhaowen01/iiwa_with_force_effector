@@ -38,9 +38,9 @@ def main():
     # group.go()
     # group.stop()
     
-    group.set_named_target('ready')
-    group.go()
-    group.stop()
+    # group.set_named_target('ready')
+    # group.go()
+    # group.stop()
 
     ready_pose = group.get_current_pose().pose
 
