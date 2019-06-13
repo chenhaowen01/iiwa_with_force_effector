@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   hardware_interface
   pluginlib
   realtime_tools
+  control_toolbox
   roscpp
 )
 
