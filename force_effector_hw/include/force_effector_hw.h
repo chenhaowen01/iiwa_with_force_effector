@@ -4,6 +4,7 @@
 #include <hardware_interface/joint_command_interface.h>
 #include <geometry_msgs/WrenchStamped.h>
 #include <std_msgs/Int64.h>
+#include <sensor_msgs/JointState.h>
 
 class ForceEffectorHW : public hardware_interface::RobotHW
 {
@@ -23,6 +24,8 @@ private:
     double joint_1_effort_;
     double joint_1_effort_command_;
 
+    std::string joint_2_name_;
+
     std::string ft_sensor_topic_name_;
     std::string ft_sensor_name_;
     std::string ft_sensor_frame_id_;
@@ -37,4 +40,5 @@ private:
     void ft_sensor_subscriber_callback(const geometry_msgs::WrenchStampedConstPtr &ft);
 
     ros::Publisher torque_publisher_;
+    ros::Publisher joint_states_publisher_;
 };
