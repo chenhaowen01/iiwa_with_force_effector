@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     ros::Time last(ros::Time::now());
     ros::Time now;
     ros::Duration period(1.0);
+    ros::Rate loop_rate(70);
 
     controller_manager::ControllerManager manager(&force_effector_hw, force_effector_nh);
 
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
         force_effector_hw.read(now, period);
         manager.update(now, period);
         force_effector_hw.write(now, period);
+        loop_rate.sleep();
     }
 
     spinner.stop();
