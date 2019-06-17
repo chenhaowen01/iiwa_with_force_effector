@@ -71,5 +71,5 @@ void ForceEffectorHW::ft_sensor_subscriber_callback(const geometry_msgs::WrenchS
     torque_[0] = ft->wrench.torque.x;
     torque_[1] = ft->wrench.torque.y;
     torque_[2] = ft->wrench.torque.z;
-    ROS_INFO("fz: %lf", ft->wrench.force.z);
+    // ROS_INFO("fz: %lf", ft->wrench.force.z);
 }
