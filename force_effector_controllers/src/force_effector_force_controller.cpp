@@ -58,11 +58,14 @@ void ForceEffectorForceController::starting(const ros::Time& time)
 void ForceEffectorForceController::update(const ros::Time& time, const ros::Duration& period)
 {
     // ROS_INFO("loop count: %d, %lf", loop_count_, ft_sensor_.getForce()[2]);
-    double error = command_ - ft_sensor_.getForce()[2];
+    double error = command_ - ft_sensor_.getForce()[0];
 
-    double commanded_position = pid_controller_.computeCommand(error, period);
+    // double commanded_force = pid_controller_.computeCommand(error, period);
 
-    joint_.setCommand(commanded_position);
+    double commanded_force = command_ * -29;
+    commanded_force += pid_controller_.computeCommand(error, period);
+
+    joint_.setCommand(commanded_force);
 
     if (loop_count_ % 10 == 0)
     {
@@ -73,7 +76,7 @@ void ForceEffectorForceController::update(const ros::Time& time, const ros::Dura
             controller_state_publisher_->msg_.process_value = ft_sensor_.getForce()[2];
             controller_state_publisher_->msg_.error = error;
             controller_state_publisher_->msg_.time_step = period.toSec();
-            controller_state_publisher_->msg_.command = commanded_position;
+            controller_state_publisher_->msg_.command = commanded_force;
 
             double dummy;
             bool antiwindup;
