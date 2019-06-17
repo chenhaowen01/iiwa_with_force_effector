@@ -17,4 +17,4 @@ force_controller:
   type: force_effector_controllers/ForceEffectorForceController
   joint: force_effector_joint_1
   ft_sensor: ft_sensor
-  pid: {p: 0.01, i: 100, d: 0.00001, i_clamp_min: -1000, i_clamp_max: 1000}
+  pid: {p: 0.0, i: -40, d: 0.0, i_clamp_min: -300, i_clamp_max: 1000}
