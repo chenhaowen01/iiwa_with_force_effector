@@ -57,15 +57,22 @@ void ForceEffectorForceController::starting(const ros::Time& time)
 
 void ForceEffectorForceController::update(const ros::Time& time, const ros::Duration& period)
 {
+    static double last_command = 0;
     // ROS_INFO("loop count: %d, %lf", loop_count_, ft_sensor_.getForce()[2]);
     double error = command_ - ft_sensor_.getForce()[0];
 
     // double commanded_force = pid_controller_.computeCommand(error, period);
 
-    double commanded_force = command_ * -29;
+    if (last_command != command_) {
+        pid_controller_.reset();
+    }
+
+    double commanded_force = (command_ + 8) * -29;
     commanded_force += pid_controller_.computeCommand(error, period);
 
     joint_.setCommand(commanded_force);
+
+    last_command = command_;
 
     if (loop_count_ % 10 == 0)
     {
