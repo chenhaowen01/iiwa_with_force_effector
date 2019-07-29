@@ -30,20 +30,35 @@ A set of ROS packeges for force control experiment on iiwa. It contains followin
 
 1. Create workspace
    ```bash
-    mkdir -p iiwa_ws/src && cd iiwa_ws
+   mkdir -p iiwa_ws/src && cd iiwa_ws
    catkin_init_workspace
    ```
 
 2. Clone repository
    ```bash
-   git clone -b development https://github.com/IFL-CAMP/iiwa_stack.git src/iiwa_stack
+   git clone -b development https://github.com/chenhaowen01/iiwa_stack.git src/iiwa_stack
+   git clone https://github.com/UTNuclearRoboticsPublic/netft_utils.git src/netft_utils
    git clone https://github.com/chenhaowen01/iiwa_with_force_effector.git src/iiwa_with_force_effector
    ```
 
 3. Install dependences
-   ```bash
-   rosdep install --from-paths src --ignore-src -r -y
-   ```
+   1. ROS dependences
+      ```bash
+      rosdep install --from-paths src --ignore-src -r -y
+      ```
+   2. Python dependences
+      ```bash
+      sudo apt install python-pip
+      pip install --user canopen
+      ```
+   3. CANOpen driver
+   
+      Download SocketCAN driver from [Ixxat website](https://www.ixxat.com/support/file-and-documents-download/drivers/socketcan-driver), and follow their README to compile and install the dirver.
+
+      > note: IXXAT USB-to-CAN V2 is used in this project currently, but any CAN interfaces whitch provide a socketCAN driver is an alternative.
+
+      > note: When you update your Linux kernel, you may need to recompile and reinstall the socketCAN driver.
+      
 
 4. Building
    ```bash
