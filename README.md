@@ -24,6 +24,11 @@ A set of ROS packeges for force control experiment on iiwa. It contains followin
 
   > note: we used **development branch** of IIWA_STACK.
 
+* canopen (A Python implementation of the CANopen standard.)
+  See their [PyPi homepage](https://pypi.org/project/canopen/) and [documentation](http://canopen.readthedocs.io/en/stable/).
+
+* [socketCAN driver for IXXAT USB-to-CAN V2](https://www.ixxat.com/support/file-and-documents-download/drivers/socketcan-driver) or any alternatives.
+
 ## Installing
 
 ### ROSCORE side (PC running ROS)
@@ -76,7 +81,7 @@ A set of ROS packeges for force control experiment on iiwa. It contains followin
 1. Synchornise project between your PC and iiwa's controller with Workbench
 2. Download iiwa stack's code from [github](https://github.com/IFL-CAMP/iiwa_stack), you can also use `git clone`.
    > note: we need code from **development branch**.
-3. 
+
 
 ## Running
 
