@@ -1,5 +1,6 @@
 #include <iiwa_ros/state/destination_reached.hpp>
 #include <iiwa_ros/state/cartesian_pose.hpp>
+#include <iiwa_ros/state/joint_position.hpp>
 #include <iiwa_ros/command/joint_position.hpp>
 #include <iiwa_ros/service/path_parameters.hpp>
 #include <iiwa_ros/service/path_parameters_lin.hpp>
@@ -26,7 +27,7 @@ bool limitVelocityAndAcceleration(double joint_relative_velocity,
 
     bool ret = false;
 
-    if (pathParametersService.setPathParameters(joint_relative_velocity, joint_relative_acceleration)) {
+    if (pathParametersService.setSmartServoJointSpeedLimits(joint_relative_velocity, joint_relative_acceleration)) {
         ret = true;
     }
 
@@ -38,8 +39,6 @@ bool limitVelocityAndAcceleration(double joint_relative_velocity,
     twist.angular.y = max_rotate_speed;
     twist.angular.z = max_rotate_speed;
 
-
-    
     if (pathParametersLinService.setMaxCartesianVelocity(twist)) {
         ret = true;
     }
@@ -60,7 +59,9 @@ int main(int argc, char *argv[])
 
     iiwa_ros::command::JointPosition jointPositionCommand;
     jointPositionCommand.init(ROBOT_NAME);
-    if (!jointPositionCommand.isConnected()) {
+    iiwa_ros::state::JointPosition jointPositionState;
+    jointPositionState.init(ROBOT_NAME);
+    if (!jointPositionState.isConnected()) {
         ROS_INFO("connect failed!");
         return 1;
     }
