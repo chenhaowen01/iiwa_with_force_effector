@@ -32,8 +32,31 @@
   
   <!--  Here we define a dummy joint between the tip of the iiwa7 and the base of the tool. 
   There is no offset between the two, that means the tool is attached at the robot flange. -->
+  <joint name="$(arg robot_name)_joint_ftsensor" type="revolute">
+    <parent link="iiwa_link_7" />
+    <child link="ftsensor_link" />
+    <origin xyz="0 0 0.091" rpy="0 0 0" />
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="0"
+            effort="0" velocity="0" />
+  </joint>
+
+  <link name="ftsensor_link">
+    <inertial>
+      <origin xyz="0 0 -0.023" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.001"  ixy="0.0"  ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.023" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.046" radius="0.03" />
+      </geometry>
+    </visual>
+  </link>
+
   <joint name="tool_joint" type="fixed">
-    <parent link="iiwa_link_ee" />
+    <parent link="ftsensor_link" />
     <child link = "tool_link" />
     <origin xyz="${tool_joint_offset}" rpy="0 ${- PI / 2} ${- PI}" />
   </joint>
@@ -42,8 +65,8 @@
   Else, one can define it using a geometric representation that approximate it, like a cylinder (see commented lines) -->
   <link name="tool_link">
     <inertial>
-      <origin xyz="-0.013278 0.000179 -0.018697" rpy="0 0 0"/>
-      <mass value="2.598"/>
+      <origin xyz="-0.013278 0.0 -0.018697" rpy="0 0 0"/>
+      <mass value="4.9"/>
       <inertia ixx="0.015773"  ixy="0.000040"  ixz="-0.000191" iyy="0.016365" iyz="0.000012" izz="0.004015" />
     </inertial>
     <visual>
@@ -75,16 +98,28 @@
   <link name="tool_link_ee"/>
 
   <!-- for test force sensor -->
-  <!-- <gazebo reference="iiwa_joint_7">
+  <transmission name="ftsensor_tran">
+      <robotNamespace>/$(arg robot_name)</robotNamespace>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="$(arg robot_name)_joint_ftsensor">
+        <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+      </joint>
+      <actuator name="ftsenfor_motor">
+        <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="$(arg robot_name)_joint_ftsensor">
     <provideFeedback>true</provideFeedback>
   </gazebo>
 
   <gazebo>
     <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-      <updateRate>100.0</updateRate>
-      <topicName>ft_sensor_topic</topicName>
-      <jointName>iiwa_joint_7</jointName>
+      <updateRate>500.0</updateRate>
+      <topicName>netft_data</topicName>
+      <jointName>$(arg robot_name)_joint_ftsensor</jointName>
     </plugin>
-  </gazebo> -->
+  </gazebo>
 
 </robot> 
